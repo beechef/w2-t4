@@ -14,7 +14,7 @@ public class ClockController : MonoBehaviour
 
     public float TimeZone;
 
-    //public bool ChangeOverSecond;
+    public bool ChangeOverSecond;
 
     const float CIRCLE_DEGREE = 360.0f;
 
@@ -89,14 +89,14 @@ public class ClockController : MonoBehaviour
         second = now.Second;
         minute = now.Minute;
         hour = now.Hour + TimeZone;
-        //if (ChangeOverSecond)
-        //{
-        //    SecondClockwise.RotateAround(centralPosition, Vector3.forward, SECOND_DEGREE * second);
-        //    MinuteClockwise.RotateAround(centralPosition, Vector3.forward, MINIUTE_DEGREE * minute + (second / SECOND));
-        //    HourClockwise.RotateAround(centralPosition, Vector3.forward, HOUR_DEGREE * hour + (minute / MINUTE));
+        if (ChangeOverSecond)
+        {
+            SecondClockwise.RotateAround(centralPosition, Vector3.forward, SECOND_DEGREE * second);
+            MinuteClockwise.RotateAround(centralPosition, Vector3.forward, MINIUTE_DEGREE * minute + (second / SECOND));
+            HourClockwise.RotateAround(centralPosition, Vector3.forward, HOUR_DEGREE * hour + (minute / MINUTE));
 
-        //}
-        //else
+        }
+        else
         {
             SecondClockwise.RotateAround(centralPosition, Vector3.forward, SECOND_DEGREE * second);
             MinuteClockwise.RotateAround(centralPosition, Vector3.forward, MINIUTE_DEGREE * minute);
@@ -112,11 +112,11 @@ public class ClockController : MonoBehaviour
     }
     void RotateSecond()
     {
-        //if (ChangeOverSecond)
-        //{
-        //    SecondClockwise.RotateAround(centralPosition, Vector3.forward, SECOND_DEGREE * Time.fixedDeltaTime);
-        //}
-        //else
+        if (ChangeOverSecond)
+        {
+            SecondClockwise.RotateAround(centralPosition, Vector3.forward, SECOND_DEGREE * Time.fixedDeltaTime);
+        }
+        else
         {
             if (mSecond >= MSECOND)
                 SecondClockwise.RotateAround(centralPosition, Vector3.forward, SECOND_DEGREE);
@@ -125,11 +125,11 @@ public class ClockController : MonoBehaviour
     }
     void RotateMinute()
     {
-        //if (ChangeOverSecond)
-        //{
-        //    MinuteClockwise.RotateAround(centralPosition, Vector3.forward, (MINIUTE_DEGREE / SECOND) * Time.fixedDeltaTime);
-        //}
-        //else
+        if (ChangeOverSecond)
+        {
+            MinuteClockwise.RotateAround(centralPosition, Vector3.forward, (MINIUTE_DEGREE / SECOND) * Time.fixedDeltaTime);
+        }
+        else
         {
             if (second >= SECOND)
                 MinuteClockwise.RotateAround(centralPosition, Vector3.forward, MINIUTE_DEGREE);
@@ -138,11 +138,11 @@ public class ClockController : MonoBehaviour
     }
     void RotateHour()
     {
-        //if (ChangeOverSecond)
-        //{
-        //    HourClockwise.RotateAround(centralPosition, Vector3.forward, (HOUR_DEGREE / (SECOND * MINUTE)) * Time.fixedDeltaTime);
-        //}
-        //else
+        if (ChangeOverSecond)
+        {
+            HourClockwise.RotateAround(centralPosition, Vector3.forward, (HOUR_DEGREE / (SECOND * MINUTE)) * Time.fixedDeltaTime);
+        }
+        else
         {
             if (minute >= MINUTE)
                 HourClockwise.RotateAround(centralPosition, Vector3.forward, HOUR_DEGREE);
